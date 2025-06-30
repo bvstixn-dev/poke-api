@@ -18,22 +18,57 @@ async function buscarPokemon() {
   }
 }
 
-function mostrarPokemon(data) {
+async function mostrarPokemon(data) {
   const container = document.getElementById('pokemonContainer');
+  
+  let descripcion = "Descripción no disponible.";
+  try {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${data.name}`);
+    const speciesData = await res.json();
+    const entrada = speciesData.flavor_text_entries.find(
+      entry => entry.language.name === "es"
+    );
+    if (entrada) {
+      descripcion = entrada.flavor_text.replace(/\f|\n/g, ' ');
+    }
+  } catch (error) {
+    console.error("Error al obtener descripción:", error);
+  }
+
+
 
   const stats = data.stats.map(stat => {
     const nombre = traducirStat(stat.stat.name);
-    return `<p><strong>${nombre}:</strong> ${stat.base_stat}</p>`;
-  }).join('');
+    const valor = stat.base_stat;
+    const porcentaje = Math.min(valor, 100); // Máximo 100%
+
+    return `
+      <p><strong>${nombre}:</strong> ${valor}</p>
+      <div class="progress mb-2">
+        <div class="progress-bar" role="progressbar" style="width: ${porcentaje}%;" aria-valuenow="${valor}" aria-valuemin="0" aria-valuemax="150">
+          ${valor}
+        </div>
+      </div>
+    `;
+    }).join('');
+
 
   container.innerHTML = `
     <h2>${data.name.toUpperCase()}</h2>
     <img src="${data.sprites.front_default}" alt="${data.name}">
-    <p><strong>Tipo:</strong> ${data.types.map(t => t.type.name).join(', ')}</p>
+    <p><strong>Tipo:</strong> ${data.types.map(t => `<span class="type ${t.type.name}">${t.type.name}</span>`).join(' ')}</p>
     <p><strong>Altura:</strong> ${data.height / 10} m</p>
     <p><strong>Peso:</strong> ${data.weight / 10} kg</p>
     <h3>Estadísticas:</h3>
     ${stats}
+
+    <h2>Descripcion<h2>
+    <p class="descripcion">${descripcion}</p>
+
+
+
+
+
   `;
 }
 

@@ -1,7 +1,20 @@
+@font-face {
+  font-family: 'PokemonGB';
+  src: url('/public/PokemonGb.ttf') format('truetype');
+}
+
+.descripcion {
+  max-width: 400px;
+  white-space: normal;
+  line-height: 1.5;
+  margin-top: 15px;
+  font-size: 12px;
+  
+}
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'PokemonGb', monospace;
   text-align: center;
-  background-color: #f2f2f2;
+  background-color:white;
   padding: 20px;
 }
 
@@ -15,4 +28,41 @@ body {
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   display: inline-block;
+}
+
+/* Exddd */
+
+/*Poner color a los tipos */
+.type {
+  display: inline-block;
+  padding: 5px 12px;
+  margin: 2px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 0.9em;
+}
+
+.normal { background-color: #A8A878; }
+.fire { background-color: #F08030; }
+.water { background-color: #6890F0; }
+.electric { background-color: #F8D030; color: black; }
+.grass { background-color: #78C850; }
+.ice { background-color: #98D8D8; color: black; }
+.fighting { background-color: #C03028; }
+.poison { background-color: #A040A0; }
+.ground { background-color: #E0C068; color: black; }
+.flying { background-color: #A890F0; }
+.psychic { background-color: #F85888; }
+.bug { background-color: #A8B820; }
+.rock { background-color: #B8A038; }
+.ghost { background-color: #705898; }
+.dragon { background-color: #7038F8; }
+.dark { background-color: #705848; }
+.steel { background-color: #B8B8D0; }
+.fairy { background-color: #EE99AC; }
+
+.fondo{
+  
 }
