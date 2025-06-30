@@ -9,12 +9,13 @@
   line-height: 1.5;
   margin-top: 15px;
   font-size: 12px;
+  background-color: rgb(218, 255, 201);
   
 }
 body {
   font-family: 'PokemonGb', monospace;
   text-align: center;
-  background-color:white;
+  background-color:rgb(191, 255, 230);
   padding: 20px;
 }
 
@@ -30,7 +31,6 @@ body {
   display: inline-block;
 }
 
-/* Exddd */
 
 /*Poner color a los tipos */
 .type {
@@ -63,6 +63,3 @@ body {
 .steel { background-color: #B8B8D0; }
 .fairy { background-color: #EE99AC; }
 
-.fondo{
-  
-}

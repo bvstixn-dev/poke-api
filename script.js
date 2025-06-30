@@ -1,5 +1,14 @@
 let currentPokemonId = 1; 
 
+//Buscar con enter
+document.getElementById('pokemonInput').addEventListener('keypress', function(e){
+  if (e.key === 'Enter'){
+    buscarPokemon();
+  }
+
+});
+
+
 async function buscarPokemon() {
   const input = document.getElementById('pokemonInput').value.toLowerCase();
   const container = document.getElementById('pokemonContainer');
@@ -18,9 +27,13 @@ async function buscarPokemon() {
   }
 }
 
+
+
 async function mostrarPokemon(data) {
   const container = document.getElementById('pokemonContainer');
   
+  
+  //Descripcion
   let descripcion = "Descripción no disponible.";
   try {
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${data.name}`);
@@ -53,7 +66,7 @@ async function mostrarPokemon(data) {
     }).join('');
 
 
-  container.innerHTML = `
+    container.innerHTML = `
     <h2>${data.name.toUpperCase()}</h2>
     <img src="${data.sprites.front_default}" alt="${data.name}">
     <p><strong>Tipo:</strong> ${data.types.map(t => `<span class="type ${t.type.name}">${t.type.name}</span>`).join(' ')}</p>
@@ -62,7 +75,7 @@ async function mostrarPokemon(data) {
     <h3>Estadísticas:</h3>
     ${stats}
 
-    <h2>Descripcion<h2>
+    <h2>Descripción<h2>
     <p class="descripcion">${descripcion}</p>
 
 
@@ -93,7 +106,7 @@ function traducirStat(statName) {
   const traducciones = {
     'hp': 'HP',
     'attack': 'Ataque',
-    'defense': 'Defensa',
+    'defense': 'Defensa', 
     'special-attack': 'Ataque Esp.',
     'special-defense': 'Defensa Esp.',
     'speed': 'Velocidad'
